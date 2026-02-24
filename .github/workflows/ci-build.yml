@@ -19,7 +19,7 @@ jobs:
       postgres:
         image: postgres:alpine
         ports:
-          - 5432:5432  #
+          - 5432:5432
         env:
           POSTGRES_PASSWORD: pgs3cr3t
           POSTGRES_DB: testdb
@@ -45,8 +45,6 @@ jobs:
           flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Run unit tests with nose
-        # Options are not necessary here because they are already predefined in setup.cfg
         run: nosetests
         env:
-          # Config Syntax: "postgresql://postgres:{password}@{service}:{port}/{database}"
-          DATABASE_URI: postgresql://postgres:pgs3cr3t@postgres:5432/testdb
+          DATABASE_URI: "postgresql://postgres:pgs3cr3t@postgres:5432/testdb"
